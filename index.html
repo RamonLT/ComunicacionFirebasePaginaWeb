@@ -1,0 +1,72 @@
+><html>
+    <head>
+        <title>Comunicacion Firebase</title>
+        <style type='text/css'> /*establecer estilo con css*/
+            body{ /*ESTABLECER LOS COLORES DE LA PAGINA, COLOR DE LETRA Y COLOR DE FONDO*/
+                color: white; 
+                background-color: black; 
+            }
+
+            #seccion1{ /*EL SIMBOLO # = HACE REFERENCIA A UN ID*/
+                font-size: 60px; /*ESTABLECER LOS PARAMETROS DEL TITULO, TAMAÑO DE LETRA, POSICIONAMIENTO,FONDO*/
+                text-align: center;
+                background-image: url(https://cdn.pixabay.com/photo/2014/05/27/23/32/matrix-356024_960_720.jpg);
+                background-size: cover; /*300px 100px*/
+            }
+            #contenidos{
+                display: grid; /*DESPLIEGA UN ARREGLO/MATRIZ*/
+                grid-template-columns: auto auto; /*LA CANTIDAD DE 'auto', INDICA EL NUMERO DE COLUMNAS*/
+            }
+            .contenido img{
+                /*height: 100px;*/
+                width: 50%;
+            }
+        </style>
+
+    </head>
+    <body>
+        <section id='seccion1'> <!--ID=ESTABLECER NOMBRE DE LA SECCION PARA DIFERENCIARLAS-->
+            <h1>Comunicacion en tiempo real Firebase-Pagina Web</h1> <!--h1=titulo-->
+        </section>
+        <p id = 's1'></p>>
+        <section id='contenidos'>
+            <div class='contenido' align=center> 
+                <img src='./imagenes/PuenteH.jpg' widht='60' height='200'>
+                <p>Sensor 1: Potenciometro</p>
+                <p>Actuador 1: Servomotor con puente H</p>
+            </div>
+            <div class='contenido' align=center>
+                <img src='./imagenes/LEDsON2.jpg' widht='60' height='200'>
+                <p>Sensor 2: Detector de cruce por cero</p>
+                <p>Actuador 2: Leds</p>
+            </div>
+        </section>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+
+            const firebaseConfig = {
+              apiKey: "AIzaSyA0c-uUY7hd7hj6aMCP25484IeZWcboQTU",
+              authDomain: "comarduinofirebase.firebaseapp.com",
+              databaseURL: "https://comarduinofirebase-default-rtdb.firebaseio.com",
+              projectId: "comarduinofirebase",
+              storageBucket: "comarduinofirebase.appspot.com",
+              messagingSenderId: "986111339637",
+              appId: "1:986111339637:web:4127307902392559789c3c",
+              measurementId: "G-2WEL33YDJF"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+
+            var sensor1 = document.getElementById('s1');
+            var ref = firebase.database().ref().child('Sensor 1:')
+            ref.on('value',snap=>sensor1.innerText = snap.val());
+          </script>
+        
+    </body>
+
+</html>
